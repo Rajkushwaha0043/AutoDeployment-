@@ -68,6 +68,13 @@ const Hero = () => {
                     A <span className="font-semibold text-primary-600 dark:text-primary-400">CI/CD enabled</span> full-stack web application demonstrating automatic deployment with every code push
                 </p>
 
+                {/* CI/CD Test Badge */}
+                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.25s' }}>
+                    <span className="inline-block px-6 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-bold border-2 border-green-500">
+                        ✅ CI/CD Test Successful - Auto-Deployed!
+                    </span>
+                </div>
+
                 {/* Quote Section */}
                 {!loading && quote && (
                     <div className="mb-12 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
