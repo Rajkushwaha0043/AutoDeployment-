@@ -1,6 +1,5 @@
 {
-    "build": {
-        "appType": "spa",
-        "outDir": "dist"
-    }
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "framework": "vite"
 }
