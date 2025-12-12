@@ -17,7 +17,8 @@ const Hero = () => {
         // Fetch random quote from backend
         const fetchQuote = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/quote');
+                // Add timestamp to prevent caching and ensure fresh random quote
+                const response = await fetch(`http://localhost:3000/api/quote?t=${Date.now()}`);
                 if (response.ok) {
                     const data = await response.json();
                     setQuote(data);
