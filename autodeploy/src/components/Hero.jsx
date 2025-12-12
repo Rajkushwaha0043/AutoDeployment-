@@ -109,7 +109,7 @@ const Hero = () => {
 
                 {/* Tech Stack Pills */}
                 <div className="mt-16 flex flex-wrap justify-center gap-3">
-                    {['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB', 'GitHub Actions', 'Vercel'].map((tech, index) => (
+                    {['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB', 'GitHub Actions', 'Vercel', 'Render'].map((tech, index) => (
                         <span
                             key={tech}
                             className="px-4 py-2 glass rounded-full text-sm font-medium hover:scale-110 transition-transform duration-200"
