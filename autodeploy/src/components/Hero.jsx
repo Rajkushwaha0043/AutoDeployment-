@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import DeploymentStatusBadge from './DeploymentStatusBadge';
+import DeploymentTimeline from './DeploymentTimeline';
 
 const Hero = () => {
     const [greeting, setGreeting] = useState('');
@@ -52,8 +54,13 @@ const Hero = () => {
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-500/30 rounded-full blur-3xl animate-bounce-slow" style={{ animationDelay: '1s' }}></div>
 
             <div className="container mx-auto text-center relative z-10">
+                {/* Deployment Status Badge */}
+                <div className="mb-8 flex justify-center animate-fade-in">
+                    <DeploymentStatusBadge />
+                </div>
+
                 {/* Greeting */}
-                <div className="mb-6 animate-fade-in">
+                <div className="mb-2 animate-fade-in">
                     <span className="inline-block px-6 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-semibold">
                         {greeting}! 👋
                     </span>
@@ -69,11 +76,9 @@ const Hero = () => {
                     A <span className="font-semibold text-primary-600 dark:text-primary-400">CI/CD enabled</span> full-stack web application demonstrating automatic deployment with every code push
                 </p>
 
-                {/* CI/CD Test Badge */}
-                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.25s' }}>
-                    <span className="inline-block px-6 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-bold border-2 border-green-500">
-                        ✅ CI/CD Test Successful - Auto-Deployed!
-                    </span>
+                {/* Timeline Visualization */}
+                <div className="mb-12 animate-slide-up" style={{ animationDelay: '0.25s' }}>
+                    <DeploymentTimeline />
                 </div>
 
                 {/* Quote Section */}
