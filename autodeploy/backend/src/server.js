@@ -3,6 +3,9 @@ import cors from 'cors';
 import { config } from './config.js';
 import apiRoutes from './routes/api.js';
 
+import authRoutes from './routes/authRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
+
 const app = express();
 
 // Middleware
@@ -31,6 +34,8 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api', apiRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Error handling
 app.use((err, req, res, next) => {
