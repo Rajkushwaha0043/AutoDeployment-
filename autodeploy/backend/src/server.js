@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from './config.js';
+import connectDB from './db.js';
 import apiRoutes from './routes/api.js';
 
 import authRoutes from './routes/authRoutes.js';
@@ -47,9 +48,12 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(config.port, () => {
-    console.log(`🚀 AutoDeploy Backend running on port ${config.port}`);
-    console.log(`📍 Environment: ${config.nodeEnv}`);
+// Start server
+connectDB().then(() => {
+    app.listen(config.port, () => {
+        console.log(`🚀 AutoDeploy Backend running on port ${config.port}`);
+        console.log(`📍 Environment: ${config.nodeEnv}`);
+    });
 });
 
 export default app;

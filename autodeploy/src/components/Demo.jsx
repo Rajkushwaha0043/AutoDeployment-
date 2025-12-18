@@ -1,25 +1,47 @@
 import { useState } from 'react';
-import { GitCommit, Clock, CheckCircle, ArrowRight, Github } from 'lucide-react';
+import axios from 'axios';
+import { GitCommit, Clock, CheckCircle, ArrowRight, Github, Loader } from 'lucide-react';
 
 const Demo = () => {
     const [isDeploying, setIsDeploying] = useState(false);
     const [commitDetails, setCommitDetails] = useState(null);
 
-    const handleDemoClick = () => {
+    const handleDemoClick = async () => {
         setIsDeploying(true);
         setCommitDetails(null);
 
-        // Simulate network delay for "pushing"
-        setTimeout(() => {
-            setIsDeploying(false);
+        try {
+            // Artificial delay for effect
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/demo/commit`);
+
+            if (data && data.length > 0) {
+                const latest = data[0];
+                setCommitDetails({
+                    hash: latest.sha.substring(0, 7),
+                    message: latest.commit.message,
+                    branch: 'main',
+                    timestamp: new Date(latest.commit.author.date).toLocaleString(),
+                    author: latest.commit.author.name
+                });
+            } else {
+                // Fallback if API fails or returns empty
+                throw new Error("No data");
+            }
+        } catch (error) {
+            console.error("Demo fetch error:", error);
+            // Fallback to simulation on error
             setCommitDetails({
                 hash: Math.random().toString(16).substring(2, 9),
-                message: 'feat: update landing page hero section',
+                message: 'feat: update landing page hero section (Simulated)',
                 branch: 'main',
                 timestamp: new Date().toLocaleString(),
                 author: 'You'
             });
-        }, 2500);
+        } finally {
+            setIsDeploying(false);
+        }
     };
 
     return (

@@ -1,4 +1,5 @@
 import express from 'express';
+import { getCommits } from '../controllers/githubController.js';
 
 const router = express.Router();
 
@@ -34,6 +35,14 @@ const quotes = [
 router.get('/quote', (req, res) => {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     res.json(randomQuote);
+});
+
+// Demo: Get latest commit (public)
+router.get('/demo/commit', async (req, res) => {
+    // Re-use the controller logic but simplify response if needed
+    // For now, directly use the controller or wrap it
+    // We'll wrap it to safely handle the array response
+    await getCommits(req, res);
 });
 
 // Deployment stats endpoint (demo data)
